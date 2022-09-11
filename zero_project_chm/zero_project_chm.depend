@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1662910182 source:d:\chm\zero_project_chm\main.cpp
+	<iostream>
+	<cmath>
+	<iomanip>
+	<locale.h>
+
