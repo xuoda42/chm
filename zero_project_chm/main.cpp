@@ -61,7 +61,7 @@ void gauss(double** a, int n, double* x, double* b) {
         cout << "Система не решаема!" << endl;
         return;
 	}
-	cout << setprecision(15) << "Получившиеся корни: " << x[n - 1] << " ";
+	//cout << setprecision(15) << "Получившиеся корни: " << x[n - 1] << " ";
 	for (int i = n - 2; i >= 0; i--) {
 		double sum = 0;
 		for (int j = i + 1; j < n; j++) {
@@ -70,8 +70,11 @@ void gauss(double** a, int n, double* x, double* b) {
         }
         //cout << sum << " ";
 		x[i] = (b[i] - sum) / a[i][i];
-		cout << setprecision(15) << x[i] << " ";
+		//cout << setprecision(15) << x[i] << " ";
 	}
+	cout << "Получившиеся корни: ";
+	for (int i = 0; i < n; i++)
+        cout << setprecision(15) << x[i] << " ";
 	cout << endl;
 	return;
 }
