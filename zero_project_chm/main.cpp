@@ -38,7 +38,7 @@ void gauss_triangle(double** a, double* b, int n) {
 		for (int i = k + 1; i < n; i++) {
             if (!a[k][k]) {
                 for (int j = k + 1; j < n; j++) {
-                    if (a[j][k] != 0)
+                    if (a[j][k])
                         swapString(a, b, n, k, j);
                     break;
                 }
@@ -58,7 +58,7 @@ void gauss_triangle(double** a, double* b, int n) {
 void gauss(double** a, int n, double* x, double* b) {
 	x[n - 1] = b[n - 1] / a[n - 1][n - 1];
 	if (x[n - 1] != x[n - 1]) {
-        cout << "System haven't decision!" << endl;
+        cout << "Система не решаема!" << endl;
         return;
 	}
 	cout << setprecision(15) << "Получившиеся корни: " << x[n - 1] << " ";
