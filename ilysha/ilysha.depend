@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1663133512 source:d:\chm\ilysha\main.cpp
-	<iostream>
-	<cmath>
-	<iomanip>
-	<locale.h>
-	<vector>
-
