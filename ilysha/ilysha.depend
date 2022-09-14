@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1663001861 source:d:\chm\zero_project_chm\main.cpp
+1663133512 source:d:\chm\ilysha\main.cpp
 	<iostream>
 	<cmath>
 	<iomanip>
 	<locale.h>
+	<vector>
 
