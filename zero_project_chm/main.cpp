@@ -57,7 +57,7 @@ void gauss_triangle(double** a, double* b, int n) {
 
 void gauss(double** a, int n, double* x, double* b) {
 	x[n - 1] = b[n - 1] / a[n - 1][n - 1];
-	if (x[n - 1] != x[n - 1]) {
+	if (x[n - 1] != x[n - 1]  || x[n - 1] == INFINITY || x[n - 1] == -INFINITY) {
         cout << "Система не решаема!" << endl;
         return;
 	}
@@ -80,7 +80,7 @@ void gauss(double** a, int n, double* x, double* b) {
 }
 
 void test(double** a, int n, double* x, double* b) {
-    if (x[n - 1] != x[n - 1]) {
+    if (x[n - 1] != x[n - 1] || x[n - 1] == INFINITY || x[n - 1] == -INFINITY) {
         return;
 	}
 	cout << "Полученная разница: ";
@@ -105,7 +105,7 @@ int main() {
 		a[i] = new double[n];
 		ba[i] = new double[n];
 		for (int j = 0; j < n; j++) {
-			a[i][j] = rand() % 10;
+			cin >> a[i][j];
 			ba[i][j] = a[i][j];
 		}
 	}
@@ -113,7 +113,7 @@ int main() {
 	double* b = new double[n];
 	double* bb = new double[n];
 	for (int i = 0; i < n; i++) {
-		b[i] = rand() % 10;
+		cin >> b[i];
         bb[i] = b[i];
 	}
     caut(a, b, n);
