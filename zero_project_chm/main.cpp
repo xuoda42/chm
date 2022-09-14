@@ -36,11 +36,12 @@ void gauss_triangle(double** a, double* b, int n) {
         if (k == n - 1)
             break;
 		for (int i = k + 1; i < n; i++) {
-            if (!a[k][k]) {
+            if (a[k][k] == 0) {
                 for (int j = k + 1; j < n; j++) {
-                    if (a[j][k])
+                    if (a[j][k] != 0) {
                         swapString(a, b, n, k, j);
-                    break;
+                        break;
+                    }
                 }
             }
 			double cn = a[i][k] / a[k][k];
