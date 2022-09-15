@@ -4,10 +4,10 @@
 #include <iomanip>
 #include <cmath>
 using namespace std;
-const double E = 1e-10;
+const double E = 1e-10; // Эпсилон
 
 void relax_method(vector<vector<double>> a, vector<double> b, vector<double> &x, int n) {
-    double w = 0.5;
+    double w = 0.5; // Параметр релаксации
     double mx = -1;
     do {
         mx = -1;
@@ -47,6 +47,10 @@ void relax_method(vector<vector<double>> a, vector<double> b, vector<double> &x,
 }
 
 void test(vector<vector<double>> a, vector<double> b, vector<double> x, int n) {
+    if (x[n - 1] != x[n - 1] || x[n - 1] == INFINITY || x[n - 1] == -INFINITY) {
+        cout << "Система не имеет решения.";
+        return;
+    }
 	cout << "Полученная разница: ";
 	for (int i = 0; i < n; i++) {
 		double sum = 0;
