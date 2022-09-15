@@ -6,34 +6,6 @@
 using namespace std;
 const double E = 0.00001e-5;
 
-bool convergnc(vector<double> a, int n, int k) {
-    double sum = 0;
-    for (int i = 0; i < n; i++)
-        if (i != k)
-            sum += fabs(a[i]);
-    return fabs(a[k]) >= sum ? 1 : 0;
-}
-
-void swap_distance(vector<vector<double>> &a, int l, int r) {
-    for (int i = l; i < (l + r) / 2; i++)
-        swap(a[i], a[r-i-1]);
-}
-
-bool swap_and_check(vector<vector<double>> a, vector<double> b, int n) {
-    for (int i = 0; i < n; i++) {
-        if (convergnc(a[i], n, )) {
-            swap(a[i], a[k]);
-            swap(b[i], b[k]);
-            return 1;
-        }
-    }
-    return 0;
-}
-
-void shuffle(vector<vector<double>> a, vector<double> b, int n) {
-
-}
-
 void relax_method(vector<vector<double>> a, vector<double> b, vector<double> &x, int n) {
     double w = 0.5;
     double mx = -1;
@@ -97,26 +69,39 @@ int main() {
     vector<vector<double>> a(n, vector<double>(n));
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-            a[i][j] = rand() % 10;
+            cin >> a[i][j];
     vector<double> b(n);
     for (int i = 0; i < n; i++)
-        b[i] = rand() % 10;
+        cin >> b[i];
     vector<double> x(n, 1);
 
+    vector<int> ind(sizeof(a), -1);
     for (int i = 0; i < n; i++) {
+        int mx = -1, q = -1;
+        for (int j = 0; j < n; j++)
+            if (fabs(a[i][j]) > mx) {
+                mx = fabs(a[i][j]);
+                q = j;
+            }
         double sum = 0;
         for (int j = 0; j < n; j++)
-            if (j != i)
-                sum += fabs(a[i][j]);
-        if (fabs(a[i][i]) < sum) {
-            bool f = shuffle(0, a, ba);
-            if (f)
-                break;
-            else {
-                cout << "Условие сходимости не выполняется.";
-                return 0;
-            }
+            if (j != q)
+                sum += a[i][j];
+        ind[i] = mx >= sum ? q : -1;
+    }
+    for (int i = 0; i < n; i++)
+        if (ind[i] == -1) {
+            cout << "Не соблюдены условия сходимости.";
+            return 0;
         }
+    for (int i = 0; i < n; i++) {
+        if (ind[i] != i)
+            for (int j = i + 1; j < n; j++)
+                if (ind[j] == i) {
+                    swap(ind[i], ind[j]);
+                    swap(a[i], a[j]);
+                    break;
+                }
     }
 
     relax_method(a, b, x, n);
