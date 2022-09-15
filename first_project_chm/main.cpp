@@ -87,7 +87,10 @@ int main() {
         for (int j = 0; j < n; j++)
             if (j != q)
                 sum += a[i][j];
-        ind[i] = mx >= sum ? q : -1;
+        if (mx >= sum)
+            for (int j = 0; j < i; j++)
+                if (ind[i] != q)
+                    ind[i] = q;
     }
     for (int i = 0; i < n; i++)
         if (ind[i] == -1) {
