@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <cmath>
 using namespace std;
-const double E = 0.00001e-5;
+const double E = 1e-10;
 
 void relax_method(vector<vector<double>> a, vector<double> b, vector<double> &x, int n) {
     double w = 0.5;
@@ -73,7 +73,7 @@ int main() {
     vector<double> b(n);
     for (int i = 0; i < n; i++)
         cin >> b[i];
-    vector<double> x(n, 1);
+    vector<double> x(n, 0);
 
     vector<int> ind(sizeof(a), -1);
     for (int i = 0; i < n; i++) {
@@ -106,6 +106,7 @@ int main() {
                 if (ind[j] == i) {
                     swap(ind[i], ind[j]);
                     swap(a[i], a[j]);
+                    swap(b[i], b[j]);
                     break;
                 }
     }
