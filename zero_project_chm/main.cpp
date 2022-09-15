@@ -117,7 +117,8 @@ int main() {
 		cin >> b[i];
         bb[i] = b[i];
 	}
-    caut(a, b, n);
+	cout << endl;
+    //caut(a, b, n);
 
 	gauss_triangle(a, b, n);
 
