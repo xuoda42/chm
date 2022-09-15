@@ -87,10 +87,13 @@ int main() {
         for (int j = 0; j < n; j++)
             if (j != q)
                 sum += a[i][j];
-        if (mx >= sum)
-            for (int j = 0; j < i; j++)
-                if (ind[i] != q)
+        if (mx >= sum && i > 0)
+            for (int j = 0; j < i; j++) {
+                if (ind[j] != q && j == i - 1)
                     ind[i] = q;
+            }
+        else if (mx >= sum && !i)
+            ind[i] = q;
     }
     for (int i = 0; i < n; i++)
         if (ind[i] == -1) {
