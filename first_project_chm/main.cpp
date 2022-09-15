@@ -32,7 +32,7 @@ void relax_method(vector<vector<double>> a, vector<double> b, vector<double> &x,
         vector<double> xkp(n);
         for (int i = 0; i < n; i++) {
             xkp[i] = w * xk[i] + (1 - w) * x[i];
-            mx = xkp[i] - x[i] < mx ? mx : xkp[i] - x[i];
+            mx = fabs(xkp[i] - x[i]) < mx ? mx : fabs(xkp[i] - x[i]);
             cout << setprecision(15) << xkp[i];
             if (i != n - 1)
                 cout << "; ";
