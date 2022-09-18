@@ -9,9 +9,10 @@ const double E = 1e-10; // Эпсилон
 void relax_method(vector<vector<double>> a, vector<double> b, vector<double> &x, int n) {
     double w = 0.5; // Параметр релаксации
     double mx = -1;
+    int cnt = 1;
     do {
         mx = -1;
-        cout << "Корни, полученные методом Зейделя на итерации: ";
+        cout << "Корни, полученные методом Зейделя на " << cnt << " итерации: ";
         vector<double> xk(n);
         for (int i = 0; i < n; i++) {
             double sum = 0;
@@ -28,7 +29,7 @@ void relax_method(vector<vector<double>> a, vector<double> b, vector<double> &x,
             else
                 cout << ".";
         }
-        cout << endl << "Корни, полученные на итерации: ";
+        cout << endl << "Корни, полученные на " << cnt << " итерации: ";
         vector<double> xkp(n);
         for (int i = 0; i < n; i++) {
             xkp[i] = w * xk[i] + (1 - w) * x[i];
@@ -42,6 +43,7 @@ void relax_method(vector<vector<double>> a, vector<double> b, vector<double> &x,
         }
         cout << endl << setprecision(15) << "Полученная максимальная разница: " << mx << endl << endl;
         x = xkp;
+        cnt++;
     } while (mx > E);
     return;
 }
