@@ -19,8 +19,8 @@ class Newton:
         self.fig = plt.figure()
         self.ax = self.fig.add_subplot(111)
         # self.ax.set_xlim([self.l - 1, self.r + 1])
-        # self.ax.set_ylim([-1.2, 1.2])
-        self.ax.set(title='Интерполирование полиномом Ньютона: вперёд')
+        # self.ax.set_ylim([-5, 5])
+        self.ax.set(xlabel='Ось абсцисс', ylabel='Ось ординат', title='Интерполирование полиномом Ньютона: вперёд')
         self.execute_func()
 
     def execute_func(self):
