@@ -44,6 +44,8 @@ void relax_method(vector<vector<double>> a, vector<double> b, vector<double> &x,
         cout << endl << setprecision(15) << "Полученная максимальная разница: " << mx << endl << endl;
         x = xkp;
         cnt++;
+        if (cnt == 100)
+            throw std::runtime_error("Сходимость невозможна!");
     } while (mx > E);
     return;
 }
@@ -79,7 +81,7 @@ int main() {
     vector<double> b(n);
     for (int i = 0; i < n; i++)
         cin >> b[i];
-    vector<double> x(n, 0);
+    vector<double> x(n, 1);
 
     vector<int> ind(sizeof(a), -1);
     for (int i = 0; i < n; i++) {
