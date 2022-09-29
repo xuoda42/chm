@@ -23,14 +23,14 @@ class Newton:
         self.ax = self.fig.add_subplot(111)
         # self.ax.set_xlim([self.l - 1, self.r + 1])
         # self.ax.set_ylim([-5, 5])
-        self.ax.set(xlabel='Ось абсцисс', ylabel='Ось ординат', title='Интерполирование полиномом Ньютона: вперёд')
+        self.ax.set(xlabel='Ось абсцисс', ylabel='Ось ординат', title='Интерполирование полиномом Ньютона: Вперёд')
         self.execute_func()
 
     def execute_func(self):
         x = np.linspace(self.l, self.r, 1000)
         y = tuple(map(eval(self.f), x))
         self.ax.plot(x, y, label=f'Исходная функция: {self.f}(x)')
-        x = np.linspace(self.l, self.r, 6)
+        x = np.linspace(self.l, self.r, 5)
         y = tuple(map(eval(self.f), x))
         self.ax.scatter(x, y, color='orange', label='Узлы интерполирования')
         self.newton_pol(x, y)
