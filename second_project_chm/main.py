@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import *
 
+def syn_1(x):
+    return pow(pow(2, 2/3) - pow(x**2, 1/3), 3/2)
+
 class Newton:
 
     def __init__(self, f, a):
@@ -27,19 +30,20 @@ class Newton:
         x = np.linspace(self.l, self.r, 1000)
         y = tuple(map(eval(self.f), x))
         self.ax.plot(x, y, label=f'Исходная функция: {self.f}(x)')
-        x = np.linspace(self.l, self.r, 5)
+        x = np.linspace(self.l, self.r, 6)
         y = tuple(map(eval(self.f), x))
         self.ax.scatter(x, y, color='orange', label='Узлы интерполирования')
         self.newton_pol(x, y)
 
     def newton_pol(self, x, y):
         N = []
+        h = x[1] - x[0]
         for i in range(len(x)):
-            N.append((y[i] - sum(N[j] * self.multiplier_newton(x, j, None, i) for j in range(i))) / self.multiplier_newton(x, i, None, i))
+            N.append((y[i] - sum(N[j] * self.multiplier_newton(x, j, None, i) / (pow(h, j) * factorial(j)) for j in range(i))) * pow(h, i) * factorial(i) / self.multiplier_newton(x, i, None, i))
         xi = np.linspace(self.l, self.r, self.step)
         y = []
         for i in xi:
-            y.append(sum(N[k] * self.multiplier_newton(x, k, i) for k in range(len(N))))
+            y.append(sum(N[k] * self.multiplier_newton(x, k, i) / (pow(h, k) * factorial(k)) for k in range(len(N))))
         self.ax.plot(tuple(xi), tuple(y), color='indigo', linestyle='-.', label='Полученная интерполяция')
         self.show_graphic()
 
