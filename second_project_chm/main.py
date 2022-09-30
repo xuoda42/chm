@@ -44,10 +44,16 @@ class Newton:
         for i in range(len(x)):
             N.append((y[i] - sum(N[j] * self.multiplier_newton(x, j, None, i) / (pow(h, j) * factorial(j)) for j in range(i))) * pow(h, i) * factorial(i) / self.multiplier_newton(x, i, None, i))
         xi = np.linspace(self.l, self.r, self.step)
-        y = []
+        yi = []
         for i in xi:
-            y.append(sum(N[k] * self.multiplier_newton(x, k, i) / (pow(h, k) * factorial(k)) for k in range(len(N))))
-        self.ax.plot(tuple(xi), tuple(y), color='indigo', linestyle='-.', label='Полученная интерполяция')
+            yi.append(sum(N[k] * self.multiplier_newton(x, k, i) / (pow(h, k) * factorial(k)) for k in range(len(N))))
+        self.ax.plot(tuple(xi), tuple(yi), color='indigo', linestyle='-.', label='Полученная интерполяция')
+        # x = np.linspace(self.l, self.r, self.step)
+        # y = list(map(eval(self.f), x))
+        # x = np.array(x)
+        # y = np.array(y)
+        # yi = np.array(yi)
+        # self.ax.fill_between(x, y, where=y>0, interpolate=True, color='indigo', alpha=0.5)
         self.show_graphic()
 
     def multiplier_newton(self, x, n, xm=None, k=0):
