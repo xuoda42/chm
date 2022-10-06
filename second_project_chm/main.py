@@ -14,14 +14,16 @@ class Newton:
 
     def __init__(self, f, a):
         self.f = f
-        if len(a) == 3:
+        if len(a) == 4:
             self.l = a[0]
             self.r = a[1]
             self.step = int(a[2])
+            self.cnt = int(a[3])
         else:
             self.l = 0
             self.r = a[0]
             self.step = int(a[1])
+            self.cnt = int(a[2])
         self.fig = plt.figure()
         self.ax = self.fig.add_subplot(111)
         # self.ax.set_xlim([self.l - 1, self.r + 1])
@@ -30,10 +32,10 @@ class Newton:
         self.execute_func()
 
     def execute_func(self):
-        x = np.linspace(self.l, self.r, 1000)
+        x = np.linspace(self.l, self.r, self.step)
         y = tuple(map(eval(self.f), x))
         self.ax.plot(x, y, label=f'Исходная функция: {self.f}(x)')
-        x = np.linspace(self.l, self.r, 5)
+        x = np.linspace(self.l, self.r, self.cnt)
         y = tuple(map(eval(self.f), x))
         self.ax.scatter(x, y, color='orange', label='Узлы интерполирования')
         self.newton_pol(x, y)
@@ -53,7 +55,7 @@ class Newton:
         # x = np.array(x)
         # y = np.array(y)
         # yi = np.array(yi)
-        # self.ax.fill_between(x, y, where=y>0, interpolate=True, color='indigo', alpha=0.5)
+        # self.ax.fill_between(x, yi, where=yi!=0, interpolate=True, color='indigo', alpha=0.5)
         self.show_graphic()
 
     def multiplier_newton(self, x, n, xm=None, k=0):
