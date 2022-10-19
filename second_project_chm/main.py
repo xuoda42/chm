@@ -5,7 +5,7 @@ import numpy as np
 from math import *
 
 def syn_1(x):
-    return pow(pow(2, 2/3) - pow(x**2, 1/3), 3/2)
+    return sin(x ** 2)
 
 def syn_2(x):
     return -(x + 2)**2 * (x - 1)**3 + 5
