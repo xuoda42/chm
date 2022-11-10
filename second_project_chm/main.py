@@ -4,11 +4,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import *
 
+
 def syn_1(x):
     return sin(x ** 2)
 
+
 def syn_2(x):
     return -(x + 2)**2 * (x - 1)**3 + 5
+
 
 class Newton:
 
@@ -68,6 +71,7 @@ class Newton:
     def show_graphic(self):
         self.ax.legend()
         plt.show()
+
 
 def main():
     with open('input.txt') as inf:

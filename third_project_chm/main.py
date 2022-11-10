@@ -1,7 +1,6 @@
 import numpy as np
-from math import *
 
-E = 1e-3
+E = 1e-10
 
 
 def read_file():
@@ -37,7 +36,7 @@ def found_root(data):
             fn = eval(data['function'], {'x': x_point})
         flag = True
         for point in points_rezult:
-            if abs(point[0] - x_point) < 0.1:
+            if abs(point[0] - x_point) < 1e-3:
                 flag = False
                 break
         if flag:
@@ -46,8 +45,7 @@ def found_root(data):
 
 
 def found_start_point(data):
-    temp_dict = {}
-    temp_dict['start_point'] = {}
+    temp_dict = {'start_point': {}}
     for id_point in range(1, len(data['x'])):
         if ((data['y'][id_point - 1] * data['y'][id_point] <= 0 and data['y'][id_point] and data['y'][id_point - 1])
                 or abs(data['y'][id_point]) <= 1e-5):
