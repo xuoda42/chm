@@ -76,6 +76,7 @@ def find_points_derivative_fourth_order(x, data):
 
 def find_derivative(data):
     fig, ax = plt.subplots(nrows=2, ncols=1)
+    fig.set_size_inches(10, 7)
     ax[0].set(title='Второй порядок точности')
     ax[1].set(title='Четвёртый порядок точности')
     x = np.linspace(data['left'], data['right'], data['count_points'])
