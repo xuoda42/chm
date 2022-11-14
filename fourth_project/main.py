@@ -1,7 +1,7 @@
 from math import log, sin, cos, exp
 
 h = 0.01
-E = 0.01
+E = 1e-5
 
 
 def cx_is(data, start_point):
@@ -65,7 +65,7 @@ def main():
     if cx_is(data, start_point):
         find_point(data, start_point)
     else:
-        print('Незя')
+        print('Начальная точка не соответствует условиям.')
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@ from math import log, sin, cos, exp
 
 
 h = 0.01
-E = 0.01
+E = 1e-5
 
 
 def read_file(name_file):
@@ -17,12 +17,15 @@ def read_file(name_file):
 def find_point(data, start_point={'x': 1, 'y': 5}):
     x_k = eval(data[0], start_point)
     y_k = eval(data[1], {'x': x_k, 'y': start_point['y'], 'log': log, 'cos': cos, 'sin': sin, 'exp': exp})
-    while max(abs(start_point['x'] - x_k), abs(start_point['y'] - y_k)) >= E:
-        start_point['x'] = x_k
-        start_point['y'] = y_k
-        x_k = eval(data[0], start_point)
-        y_k = eval(data[1], {'x': x_k, 'y': start_point['y'], 'log': log, 'cos': cos, 'sin': sin, 'exp': exp})
-        print('Невязка: ', max(abs(start_point['x'] - x_k), abs(start_point['y'] - y_k)))
+    try:
+        while max(abs(start_point['x'] - x_k), abs(start_point['y'] - y_k)) >= E:
+            start_point['x'] = x_k
+            start_point['y'] = y_k
+            x_k = eval(data[0], start_point)
+            y_k = eval(data[1], {'x': x_k, 'y': start_point['y'], 'log': log, 'cos': cos, 'sin': sin, 'exp': exp})
+            print('Невязка: ', max(abs(start_point['x'] - x_k), abs(start_point['y'] - y_k)))
+    except Exception:
+        print(start_point['x'], start_point['y'])
     print(start_point['x'], start_point['y'])
 
 
@@ -31,7 +34,7 @@ def cx_is(data, start_point):
     h_point_x['x'] += h
     try:
         if (eval(data[0], h_point_x) - eval(data[0], start_point)) / h + \
-                (eval(data[1], h_point_x) - eval(data[1], start_point)) / h >= 1:
+                (eval(data[1], h_point_x) - eval(data[1], start_point)) / h > 1:
             return False
     except TypeError:
         return False
@@ -39,7 +42,7 @@ def cx_is(data, start_point):
     h_point_y['y'] += h
     try:
         if (eval(data[0], h_point_y) - eval(data[0], start_point)) / h + \
-                (eval(data[1], h_point_y) - eval(data[1], start_point)) / h >= 1:
+                (eval(data[1], h_point_y) - eval(data[1], start_point)) / h > 1:
             return False
     except TypeError:
         return False
@@ -66,7 +69,7 @@ def main():
     if cx_is(data, start_point):
         find_point(data, start_point)
     else:
-        print('Незя')
+        print('Начальная точка не соответствует условиям.')
 
 
 if __name__ == "asd":
